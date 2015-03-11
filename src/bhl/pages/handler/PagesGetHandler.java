@@ -13,12 +13,12 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with TILT.  If not, see <http://www.gnu.org/licenses/>.
- *  (c) copyright Desmond Schmidt 2014
+ *  (c) copyright Biodiversity Heritage Library 2015 
+ *  http://www.biodiversitylibrary.org/
  */
 package bhl.pages.handler;
 
 import bhl.pages.PagesWebApp;
-import calliope.core.handler.AeseVersion;
 import bhl.pages.constants.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +29,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import bhl.pages.constants.Database;
 import bhl.pages.constants.JSONKeys;
-import bhl.pages.constants.Params;
 import calliope.core.database.Connection;
 import calliope.core.database.Connector;
 import calliope.core.exception.DbException;

@@ -13,7 +13,8 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with TILT.  If not, see <http://www.gnu.org/licenses/>.
- *  (c) copyright Desmond Schmidt 2015
+ *  (c) copyright Biodiversity Heritage Library 2015 
+ *  http://www.biodiversitylibrary.org/
  */
 
 package bhl.pages.filters;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 
 /**
  * A simple HTML filter for the Brew journal, 1871.
- * We just format for display of plain text. This is not permanent.
+ * We just format the plain text for display. This is not permanent.
  * @author desmond
  */
 public class BrewJournal1871 implements Filter 

@@ -13,9 +13,9 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with TILT.  If not, see <http://www.gnu.org/licenses/>.
- *  (c) copyright Desmond Schmidt 2015
+ *  (c) copyright Biodiversity Heritage Library 2015 
+ *  http://www.biodiversitylibrary.org/
  */
-
 
 package bhl.pages.handler;
 
