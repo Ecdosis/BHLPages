@@ -23,8 +23,6 @@ import bhl.pages.constants.JSONKeys;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bhl.pages.exception.PagesException;
-import java.util.Set;
-import java.util.Iterator;
 import bhl.pages.database.Connection;
 import bhl.pages.database.Connector;
 
@@ -34,6 +32,48 @@ import bhl.pages.database.Connector;
  */
 public class PagesDocumentsHandler extends PagesGetHandler 
 {
+    String concoctTitle( String docid )
+    {
+        StringBuilder className = new StringBuilder();
+        StringBuilder yearName = new StringBuilder();
+        StringBuilder author = new StringBuilder();
+        int state = 0;
+        for ( int i=0;i<docid.length();i++ )
+        {
+            char token = docid.charAt(i);
+            switch ( state )
+            {
+                case 0: // looking for document classname
+                    if ( Character.isDigit(token) )
+                    {
+                        yearName.append(token);
+                        state = 1;
+                    }
+                    else
+                        className.append(token);
+                    break;
+                case 1: // looking for year
+                    if ( Character.isDigit(token) && yearName.length()<4 )
+                        yearName.append(token);
+                    else
+                        state = 2;
+                    break;
+                case 2: // looking for author
+                    if ( Character.isLetter(token) )
+                        author.append(token);
+                    break;
+            }
+        }
+        StringBuilder total = new StringBuilder();
+        total.append(author);
+        total.append(" ");
+        if ( className.length()>0 && className.charAt(className.length()-1)=='s' )
+            className.setLength(className.length()-1);
+        total.append(className);
+        total.append(" ");
+        total.append(yearName);
+        return total.toString();
+    }
     public void handle( HttpServletRequest request, 
         HttpServletResponse response, String urn ) throws PagesException
     {
@@ -46,9 +86,12 @@ public class PagesDocumentsHandler extends PagesGetHandler
                 JSONKeys.IA_IDENTIFIER);
             for ( int i=0;i<keys.length;i++ )
             {
+                sb.append("{ \"docid\":");
                 sb.append("\"");
                 sb.append(keys[i]);
-                sb.append("\"");
+                sb.append("\", \"title\": \"");
+                sb.append(concoctTitle(keys[i]));
+                sb.append("\" }");
                 if ( i<keys.length-1 )
                     sb.append(",");
             }

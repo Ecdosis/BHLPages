@@ -55,7 +55,11 @@ public class BrewJournal1871 implements Filter
                 current = new Date(lines[i]);
             }
             else
+            {
+                if ( current ==null )
+                    current = new Paragraph();
                 current.addLine( lines[i] );
+            }
         }
         if ( current != null )
             blocks.add(current);
