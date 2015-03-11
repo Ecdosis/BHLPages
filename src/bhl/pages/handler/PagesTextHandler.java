@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bhl.pages.exception.MissingDocumentException;
 import bhl.pages.constants.Params;
-
+import bhl.pages.database.*;
 
 /**
  * Get the text of a page
@@ -46,9 +46,10 @@ public class PagesTextHandler extends PagesGetHandler {
     {
         try
         {
+            Connection conn = Connector.getConnection();
             String docid = request.getParameter(Params.DOCID);
             String pageid = request.getParameter(Params.PAGEID);
-            String content = getPageContent( docid, pageid );
+            String content = conn.getPageContent( docid, pageid );
             response.setContentType("text/plain;charset=UTF-8");
             response.getWriter().println(content);
         }

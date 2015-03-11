@@ -29,20 +29,34 @@ public class Date implements Block {
     {
         Date.months = new HashSet<String>();
         Date.months.add("january");
+        Date.months.add("jan");
         Date.months.add("february");
+        Date.months.add("feb");
         Date.months.add("march");
+        Date.months.add("mar");
         Date.months.add("april");
+        Date.months.add("apr");
         Date.months.add("may");
         Date.months.add("june");
+        Date.months.add("jun");
         Date.months.add("july");
+        Date.months.add("jul");
         Date.months.add("august");
+        Date.months.add("aug");
         Date.months.add("september");
+        Date.months.add("sept");
         Date.months.add("october");
+        Date.months.add("oct");
         Date.months.add("november");
+        Date.months.add("nov");
         Date.months.add("december");
+        Date.months.add("dec");
         Date.locations = new HashSet<String>();
         Date.locations.add("concord");
         Date.locations.add("massachusetts");
+        Date.locations.add("umbagog");
+        Date.locations.add("lake");
+        Date.locations.add("maine");
         Date.days = new HashSet<String>();
         Date.days.add("monday");
         Date.days.add("tuesday");
@@ -53,9 +67,8 @@ public class Date implements Block {
         Date.days.add("sunday");
     }
     int year;
-    String month;
-    int day;
     int state;
+    String date;
     String dayName;
     String location;
     static HashSet<String> months;
@@ -64,8 +77,16 @@ public class Date implements Block {
     Date( String text )
     {
         if ( Date.isYear(text) )
+        {
             this.year = Date.toYear(text);
-        state = 1;
+            state = 1;
+        }
+        else if ( Date.isDate(text) )
+        {
+            this.date = text;
+            state = 2;
+        }
+        //else we do nothing
     }
     /**
      * Convert a text year into a numerical one
@@ -83,7 +104,7 @@ public class Date implements Block {
     static boolean isYear( String text )
     {
         String trimmed = text.replaceAll("[^a-zA-Z0-9 ]", "").toLowerCase();
-        if ( text.length()==4 )
+        if ( trimmed.length()==4 )
         {
             try
             {
@@ -120,16 +141,19 @@ public class Date implements Block {
             return false;
         }
     }
-    boolean isDate( String text )
+    static boolean isDate( String text )
     {
+        text = text.replaceAll("[^a-zA-Z0-9 ]", "").toLowerCase();
         String[] parts = text.split(" ");
         if ( parts.length==2 )
         {
+            String month = null;
+            int day = 0;
             if ( Date.isMonth(parts[0]) )
-                this.month = parts[0];
+                month = parts[0];
             if ( Date.isDay(parts[1]) )
-                this.day = Integer.parseInt(parts[1]);
-            return true;
+                day = Integer.parseInt(parts[1]);
+            return month != null && day != 0;
         }
         else
             return false;
@@ -161,7 +185,10 @@ public class Date implements Block {
         {
             case 1: // look for date
                 if ( isDate(line) )
+                {
+                    this.date = line;
                     state = 2;
+                }
                 else
                     return false;
                     break;
@@ -191,14 +218,9 @@ public class Date implements Block {
             sb.append( year );
             sb.append("<br>");
         }
-        if ( month != null )
+        if ( date != null )
         {
-            sb.append(month);
-            if ( day != 0 )
-            {
-                sb.append(" ");
-                sb.append(day);
-            }
+            sb.append(date);
             sb.append("<br>");
         }
         if ( dayName != null )

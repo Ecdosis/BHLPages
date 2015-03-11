@@ -19,10 +19,10 @@
 
 package bhl.pages;
 
-import calliope.core.database.Connector;
-import calliope.core.database.Repository;
-import calliope.core.exception.CalliopeExceptionMessage;
-import calliope.core.exception.CalliopeException;
+import bhl.pages.database.Connector;
+import bhl.pages.database.Repository;
+import bhl.pages.exception.PagesExceptionMessage;
+import bhl.pages.exception.PagesException;
 import java.util.Enumeration;
 import bhl.pages.handler.*;
 import bhl.pages.exception.PagesException;
@@ -124,12 +124,12 @@ public class PagesWebApp extends HttpServlet
         catch ( Exception e )
         {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            CalliopeException he = new CalliopeException( e );
+            PagesException he = new PagesException( e );
             resp.setContentType("text/html");
             try 
             {
                 resp.getWriter().println(
-                    new CalliopeExceptionMessage(he).toString() );
+                    new PagesExceptionMessage(he).toString() );
             }
             catch ( Exception e2 )
             {

@@ -1,0 +1,10 @@
+Package: bhlpages
+Version: 1.0.1
+Section: base
+Priority: optional
+Architecture: amd64
+Depends: default-jre-headless (>= 1.6)
+Maintainer: Desmond Schmidt <desmond.allan.schmidt@gmail.com>
+Description: Page information service for TILT2
+ (customised for Biodoversity Heritage Libraray, 
+ Missouri Botanical Garden).

@@ -18,11 +18,15 @@
  */
 package bhl.pages.handler;
 
+import bhl.pages.constants.Database;
+import bhl.pages.constants.JSONKeys;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bhl.pages.exception.PagesException;
 import java.util.Set;
 import java.util.Iterator;
+import bhl.pages.database.Connection;
+import bhl.pages.database.Connector;
 
 /**
  * Get a list of documents with titles from the database
@@ -35,18 +39,17 @@ public class PagesDocumentsHandler extends PagesGetHandler
     {
         try
         {
-            if ( PagesGetHandler.docMap == null )
-                PagesGetHandler.loadDocMap();
+            Connection conn = Connector.getConnection();
             StringBuilder sb = new StringBuilder();
             sb.append("[ ");
-            Set<String> keys = PagesGetHandler.docMap.keySet();
-            Iterator<String> iter=keys.iterator();
-            while ( iter.hasNext() )
+            String[] keys = conn.getDistinctKeys( Database.DOCUMENTS, 
+                JSONKeys.IA_IDENTIFIER);
+            for ( int i=0;i<keys.length;i++ )
             {
                 sb.append("\"");
-                sb.append(iter.next() );
+                sb.append(keys[i]);
                 sb.append("\"");
-                if ( iter.hasNext() )
+                if ( i<keys.length-1 )
                     sb.append(",");
             }
             sb.append(" ]");

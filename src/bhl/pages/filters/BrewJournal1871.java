@@ -48,6 +48,12 @@ public class BrewJournal1871 implements Filter
                     blocks.add(current);
                 current = new Date(lines[i]);
             }
+            else if ( Date.isDate(lines[i]) )
+            {
+                if ( current !=null )
+                    blocks.add(current);
+                current = new Date(lines[i]);
+            }
             else
                 current.addLine( lines[i] );
         }

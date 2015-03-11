@@ -1,0 +1,9 @@
+#/bin/sh
+update-rc.d bhlpages defaults
+pgrep(){ ps -ax -o pid,command | grep "$@" | grep -v 'grep' | awk '{print $1;}'; }
+  HPID=`pgrep BHLPages.jar`
+  if [ -n "$HPID" ]; then
+    /etc/init.d/bhlpages stop
+  fi
+/etc/init.d/bhlpages start
+

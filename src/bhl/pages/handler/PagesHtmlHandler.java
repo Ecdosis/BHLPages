@@ -25,6 +25,7 @@ import bhl.pages.constants.Params;
 import bhl.pages.exception.MissingDocumentException;
 import bhl.pages.exception.PagesException;
 import bhl.pages.filters.BrewJournal1871;
+import bhl.pages.database.*;
 
 /**
  * Return a HTML rendering of the text of just one page
@@ -36,9 +37,10 @@ public class PagesHtmlHandler extends PagesGetHandler {
     {
         try
         {
+            Connection conn = Connector.getConnection();
             String docid = request.getParameter(Params.DOCID);
             String pageid = request.getParameter(Params.PAGEID);
-            String content = getPageContent( docid, pageid );
+            String content = conn.getPageContent( docid, pageid );
             // obviously we need to choose a filter here based on the ocid
             // perhaps via a HashMap 
             // which could be loaded from an external resource or hard-coded

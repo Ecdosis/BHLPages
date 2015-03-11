@@ -37,8 +37,6 @@ public class PagesImageHandler extends PagesGetHandler {
         {
             String docid = request.getParameter(Params.DOCID);
             String pageid = request.getParameter(Params.PAGEID);
-            if ( PagesGetHandler.docMap == null )
-                PagesGetHandler.loadDocMap();
             if ( docid != null && pageid!= null )
             {
                 // yes the caller can do this him/herself

@@ -1,0 +1,14 @@
+a64815580a54a74410fdac30da60b701  etc/init.d/bhlpages
+38f47aabb8cf6df3d9010042c76477e2  usr/local/bin/bhlpages/BHLPages.jar
+ed9cdb7a21bd0ba982a0f341520f3183  usr/local/bin/bhlpages/lib/jetty-util-8.1.15.v20140411.jar
+a2d0df2ebc8c428c62a152682f4c42ad  usr/local/bin/bhlpages/lib/jetty-http-8.1.15.v20140411.jar
+f1535657ebe122f89bad3f75a2dcedad  usr/local/bin/bhlpages/lib/json-simple-1.1.1.jar
+d5fa0d9d4c890d0d08dbc00cbe613569  usr/local/bin/bhlpages/lib/jetty-io-8.1.15.v20140411.jar
+08ead3940161d9b74a16ea1832c662ed  usr/local/bin/bhlpages/lib/jetty-continuation-8.1.15.v20140411.jar
+0379ecf1568b50497494e4f6be1eb8c0  usr/local/bin/bhlpages/lib/jetty-server-8.1.15.v20140411.jar
+f8e61ace5135ef2a775a0b80ac7012e9  usr/local/bin/bhlpages/lib/servlet-api-3.0.jar
+41b7979cd7530faeb44da0cb6b0772bb  usr/local/bin/bhlpages/lib/jetty-servlet-8.1.15.v20140411.jar
+3b45f7166ad96adb91dfd9bf044f3071  usr/local/bin/bhlpages/lib/mongo-java-driver-2.11.1.jar
+1b023d0dd96e641db76f46ddbb19d6ca  usr/local/bin/bhlpages/lib/htmlparser.jar
+db305f6c847c7dcc94e97129aa27a2c5  usr/local/bin/bhlpages/lib/calliope.core.jar
+f4a53837872c1d9df457590cd9f79889  usr/local/bin/bhlpages/lib/nmerge.jar

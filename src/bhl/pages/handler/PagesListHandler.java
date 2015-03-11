@@ -19,11 +19,14 @@
 
 package bhl.pages.handler;
 
+import bhl.pages.constants.Database;
+import bhl.pages.constants.JSONKeys;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bhl.pages.constants.Params;
 import bhl.pages.exception.MissingDocumentException;
-import java.util.ArrayList;
+import bhl.pages.database.Connection;
+import bhl.pages.database.Connector;
 
 
 /**
@@ -39,23 +42,20 @@ public class PagesListHandler extends PagesGetHandler
         try
         {
             String docid = request.getParameter(Params.DOCID);
-            if ( PagesGetHandler.docMap == null )
-                PagesGetHandler.loadDocMap();
             if ( docid != null )
             {
-                ArrayList pages = docMap.get( docid );
+                Connection conn = Connector.getConnection();
+                String[] pages = conn.listCollectionBySubKey( Database.PAGES, 
+                    JSONKeys.IA_IDENTIFIER, docid, JSONKeys.BHL_PAGE_ID );
                 StringBuilder sb = new StringBuilder();
-                sb.append("[");
-                for ( int i=0;i<pages.size();i++ )
+                sb.append("[ ");
+                for ( int i=0;i<pages.length;i++ )
                 {
-                    KeyPair page = (KeyPair)pages.get(i);
-                    sb.append("\"");
-                    sb.append(page.value);
-                    sb.append("\"");
-                    if ( i < pages.size()-1 )
+                    sb.append(pages[i]);
+                    if ( i < pages.length-1 )
                         sb.append(", ");
                 }
-                sb.append("]");
+                sb.append(" ]");
                 response.setContentType("application/json");
                 response.getWriter().print(sb.toString());
             }

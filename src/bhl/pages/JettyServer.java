@@ -19,18 +19,17 @@
 
 package bhl.pages;
 
-import calliope.core.database.Connector;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 import java.io.IOException;
-import calliope.core.database.Repository;
 import bhl.pages.constants.Service;
 import bhl.pages.handler.PagesGetHandler;
 import bhl.pages.exception.PagesException;
-
+import bhl.pages.database.Connector;
+import bhl.pages.database.Repository;
 
 /**
  * This launches the Jetty service
@@ -69,7 +68,7 @@ public class JettyServer extends AbstractHandler
                     throw new PagesException("Unknown http method "+method);
             }
             else
-                throw new PagesException("Unknown service"+service);
+                throw new PagesException("Unknown service "+service);
         }
         catch ( PagesException te )
         {
@@ -89,7 +88,7 @@ public class JettyServer extends AbstractHandler
     static boolean readArgs(String[] args)
     {
         boolean sane = true;
-        PagesWebApp.wsPort = 8083;
+        PagesWebApp.wsPort = 8084;
         PagesWebApp.host = "localhost";
         try
         {
