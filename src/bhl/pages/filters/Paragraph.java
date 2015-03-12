@@ -25,18 +25,35 @@ package bhl.pages.filters;
 public class Paragraph implements Block
 {
     StringBuilder content;
+    boolean lastWasHyphen;
     Paragraph()
     {
         content = new StringBuilder();
     }
     public boolean addLine( String line )
     {
-        if ( content.length()>0 )
-            content.append("<br>\n");
-        else
+        if ( lastWasHyphen )
+            lastWasHyphen = false;
+        else if ( content.length()== 0 )
             content.append("<p>");
+        else
+            content.append("<br>\n");
         content.append( line );
         return true;
+    }
+    /**
+     * Mark trailing hyphen
+     */
+    public void markHyphen( boolean hard )
+    {
+        if ( content.length()>0 && content.charAt(content.length()-1)=='-' )
+        {
+            content.setLength(content.length()-1);
+            content.append("<span class=\"");
+            content.append((hard)?"hard":"soft");
+            content.append("\">-</span>");
+            lastWasHyphen = true;
+        }
     }
     /**
      * Convert the paragraph to a String

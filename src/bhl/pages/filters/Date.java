@@ -51,12 +51,6 @@ public class Date implements Block {
         Date.months.add("nov");
         Date.months.add("december");
         Date.months.add("dec");
-        Date.locations = new HashSet<String>();
-        Date.locations.add("concord");
-        Date.locations.add("massachusetts");
-        Date.locations.add("umbagog");
-        Date.locations.add("lake");
-        Date.locations.add("maine");
         Date.days = new HashSet<String>();
         Date.days.add("monday");
         Date.days.add("tuesday");
@@ -70,24 +64,8 @@ public class Date implements Block {
     int state;
     String date;
     String dayName;
-    String location;
     static HashSet<String> months;
-    static HashSet<String> locations;
     static HashSet<String> days;
-    Date( String text )
-    {
-        if ( Date.isYear(text) )
-        {
-            this.year = Date.toYear(text);
-            state = 1;
-        }
-        else if ( Date.isDate(text) )
-        {
-            this.date = text;
-            state = 2;
-        }
-        //else we do nothing
-    }
     /**
      * Convert a text year into a numerical one
      * @param text a text year maybe with punctuation and spaces
@@ -158,14 +136,6 @@ public class Date implements Block {
         else
             return false;
     }
-    boolean isLocation( String text )
-    {
-        String[] words = text.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
-        for ( int i=0;i<words.length;i++ )
-            if ( !locations.contains(words[i]) )
-                return false;
-        return true;
-    }
     boolean isDayName( String text )
     {
         String trimmed = text.replaceAll("[^a-zA-Z ]", "").toLowerCase();
@@ -183,6 +153,20 @@ public class Date implements Block {
     {
         switch ( state )
         {
+            case 0: // look for year
+                if ( Date.isYear(line) )
+                {
+                    this.year = Date.toYear(line);
+                    state = 1;
+                }
+                else if ( Date.isDate(line) )
+                {
+                    this.date = line;
+                    state = 2;
+                }
+                else
+                    return false;
+                break;
             case 1: // look for date
                 if ( isDate(line) )
                 {
@@ -191,14 +175,9 @@ public class Date implements Block {
                 }
                 else
                     return false;
-                    break;
+                break;
             case 2: case 3:// look for location or dayName
-                if ( isLocation(line) )
-                {
-                    this.location = line;
-                    state = 4;
-                }
-                else if ( isDayName(line) )
+                if ( isDayName(line) )
                 {
                     this.dayName = line;
                     state = 3;
@@ -229,17 +208,18 @@ public class Date implements Block {
             sb.append("<br>");
         }
         sb.append("</div>");
-        if ( location !=null )
-        {
-            sb.append("<h4>");
-            sb.append(location);
-            sb.append("</h4>");
-        }
         return sb.toString();
+    }
+    /**
+     * Unimplemented in this class
+     */
+    public void markHyphen( boolean hard )
+    {
     }
     public static void main(String[]args)
     {
-        Date d = new Date("1871");
+        Date d = new Date();
+        d.addLine("1871");
         d.addLine("May 13");
         d.addLine("Sunday");
         d.addLine("Concord, Massachusetts");

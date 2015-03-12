@@ -21,9 +21,10 @@
 package bhl.pages.filters;
 
 /**
- *
+ * Interface for block-level elements
  * @author desmond
  */
 public interface Block {
     abstract boolean addLine( String line );
+    abstract void markHyphen( boolean hard );
 }
