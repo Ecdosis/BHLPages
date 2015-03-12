@@ -39,6 +39,7 @@ public class BrewJournal1871 implements Filter
         try
         {
             this.speller = new AeseSpeller( "en_US" );
+            this.compounds = new HashSet<String>();
         }
         catch ( Exception e )
         {
@@ -185,12 +186,12 @@ public class BrewJournal1871 implements Filter
                     current.markHyphen(true);
                 else
                     current.markHyphen(false);
-            if ( lines[i].startsWith(" ") )
-                current = transition(current,"Paragraph",lines[i],true);
-            else if ( Date.isYear(lines[i]) )
+            if ( Date.isYear(lines[i]) )
                 current = transition(current,"Date",lines[i],true);
             else if ( Location.isLocation(lines[i]) )
                 current= transition(current,"Location",lines[i],true);
+            else if ( lines[i].startsWith(" ") )
+                current = transition(current,"Paragraph",lines[i].trim(),true);
             else
                 current = transition(current,"Paragraph",lines[i],false);
             lastWord = getLastWord(lines[i]);

@@ -37,7 +37,7 @@ public class Paragraph implements Block
         else if ( content.length()== 0 )
             content.append("<p>");
         else
-            content.append("<br>\n");
+            content.append("\n");
         content.append( line );
         return true;
     }
@@ -48,10 +48,13 @@ public class Paragraph implements Block
     {
         if ( content.length()>0 && content.charAt(content.length()-1)=='-' )
         {
-            content.setLength(content.length()-1);
-            content.append("<span class=\"");
-            content.append((hard)?"hard":"soft");
-            content.append("\">-</span>");
+            if ( !hard )
+            {
+                content.setLength(content.length()-1);
+                content.append("<span class=\"soft\">-\n</span>");
+            }
+            else
+                content.append("<span class=\"soft\">\n</span>");
             lastWasHyphen = true;
         }
     }

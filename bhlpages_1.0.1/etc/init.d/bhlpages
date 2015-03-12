@@ -22,6 +22,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Biodiversity Hertitage Library page description service for TILT"
 NAME=bhlpages
 DAEMON=/usr/local/bin/bhlpages/BHLPages.jar
+LIBPATH=`java -cp /usr/local/bin/bhlpages/ LibPath`:/usr/local/lib
 # Load the VERBOSE setting and other rcS variables
 . /lib/init/vars.sh
 # Define LSB log_* functions.
@@ -41,7 +42,7 @@ getjarpaths()
 do_start() {
   JARPATHS=`getjarpaths /usr/local/bin/bhlpages/lib`
   pkill -f BHLPages.jar
-  java -cp .$JARPATHS:/usr/local/bin/bhlpages/BHLPages.jar bhl.pages.JettyServer -w 8084 2>/dev/null &
+  java -Djava.library.path=$LIBPATH -cp .$JARPATHS:/usr/local/bin/bhlpages/BHLPages.jar bhl.pages.JettyServer -w 8084 2>/dev/null &
 }
 # Stop the service bhlpages
 do_stop() {
