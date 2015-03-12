@@ -77,5 +77,5 @@ public abstract class Connection
     public abstract String[] getDistinctKeys( String collection, String field )
         throws DbException;
     public abstract String[] listCollectionBySubKey( String collection, 
-        String subKey, String subValue, String field  ) throws DbException;
+        String subKey, String subValue, String[] fields  ) throws DbException;
 }

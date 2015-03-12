@@ -25,32 +25,32 @@ import bhl.pages.exception.PagesException;
 import bhl.pages.Utils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import bhl.pages.constants.Database;
-import bhl.pages.constants.JSONKeys;
-import bhl.pages.database.Connection;
-import bhl.pages.database.Connector;
-import bhl.pages.exception.DbException;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.Iterator;
+
 
 /**
  * Handle a GET request for various image types, text, GeoJSON
  * @author desmond
  */
 public class PagesGetHandler {
-    private static void sortList( ArrayList<KeyPair> a )
+    protected static void sortList( JSONArray a )
     {
         int increment = a.size() / 2;
         while (increment > 0) {
             for (int i = increment; i < a.size(); i++) {
                 int j = i;
-                KeyPair temp = a.get(i);
-                while (j >= increment && a.get(j-increment).compareTo(temp)<0) {
+                JSONObject temp = (JSONObject)a.get(i);
+                int tempN = ((Number)temp.get("n")).intValue();
+                JSONObject aObj = ((JSONObject)a.get(j-increment));
+                int aN = ((Number)aObj.get("n")).intValue();
+                while (j >= increment && aN>tempN ) 
+                {
                     a.set(j,a.get(j-increment));
                     j = j - increment;
+                    if ( j >= increment )
+                    {
+                        aObj = ((JSONObject)a.get(j-increment));
+                        aN = ((Number)aObj.get("n")).intValue();
+                    }
                 }
                 a.set(j, temp);
             }

@@ -50,15 +50,20 @@ public class BrewJournal1871 implements Filter
             }
             else if ( Date.isDate(lines[i]) )
             {
-                if ( current !=null )
+                if ( current != null )
                     blocks.add(current);
                 current = new Date(lines[i]);
             }
             else
             {
-                if ( current ==null )
+                if ( current == null )
                     current = new Paragraph();
-                current.addLine( lines[i] );
+                if ( !current.addLine(lines[i]) )
+                {
+                    blocks.add(current);
+                    current = new Paragraph();
+                    current.addLine(lines[i]);
+                }
             }
         }
         if ( current != null )

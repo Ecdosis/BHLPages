@@ -27,6 +27,9 @@ import bhl.pages.constants.Params;
 import bhl.pages.exception.MissingDocumentException;
 import bhl.pages.database.Connection;
 import bhl.pages.database.Connector;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.JSONArray;
 
 
 /**
@@ -45,19 +48,23 @@ public class PagesListHandler extends PagesGetHandler
             if ( docid != null )
             {
                 Connection conn = Connector.getConnection();
+                String[] keys = new String[2];
+                keys[0] = JSONKeys.BHL_PAGE_ID;
+                keys[1]= JSONKeys.PAGE_SEQUENCE;
                 String[] pages = conn.listCollectionBySubKey( Database.PAGES, 
-                    JSONKeys.IA_IDENTIFIER, docid, JSONKeys.BHL_PAGE_ID );
-                StringBuilder sb = new StringBuilder();
-                sb.append("[ ");
+                    JSONKeys.IA_IDENTIFIER, docid, keys );
+                JSONArray list =new JSONArray();
                 for ( int i=0;i<pages.length;i++ )
                 {
-                    sb.append(pages[i]);
-                    if ( i < pages.length-1 )
-                        sb.append(", ");
+                    JSONObject jobj = (JSONObject)JSONValue.parse(pages[i]);
+                    PageDesc ps = new PageDesc(
+                        jobj.get(JSONKeys.PAGE_SEQUENCE).toString(),
+                        jobj.get(JSONKeys.BHL_PAGE_ID).toString());
+                    list.add( ps.toJSONObject() );
                 }
-                sb.append(" ]");
+                PagesGetHandler.sortList( list );
                 response.setContentType("application/json");
-                response.getWriter().print(sb.toString());
+                response.getWriter().print(list.toJSONString());
             }
             else 
                 throw new Exception("Must specify document identifier");

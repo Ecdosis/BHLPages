@@ -26,6 +26,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.DBCursor;
 import java.util.List;
+import org.json.simple.JSONObject;
 
 
 /**
@@ -146,20 +147,23 @@ public class MongoConnection extends Connection
      * @param collection the collection to search
      * @param subKey the subKey to make the initial choice
      * @param subValue the value of the subKey to search for
-     * @param field the field name to retrieve
-     * @return and array of field values
+     * @param fields the field names to retrieve
+     * @return and array of field values as JSON object strings
      * @throws DbException 
      */
+    @Override
     public String[] listCollectionBySubKey( String collection, 
-        String subKey, String subValue, String field ) throws DbException
+        String subKey, String subValue, String[] fields ) throws DbException
     {
         try
         {
             connect();
             DBCollection coll = getCollectionFromName( collection );
             DBObject query = new BasicDBObject(subKey,subValue);
-            DBObject keys = new BasicDBObject(field,1);
-            DBCursor cursor = coll.find( new BasicDBObject(), keys );
+            BasicDBObject keys = new BasicDBObject();
+            for ( int i=0;i<fields.length;i++ )
+                keys.put(fields[i],1);
+            DBCursor cursor = coll.find( query, keys );
             if ( cursor.length() > 0 )
             {
                 String[] array = new String[cursor.length()];
@@ -168,8 +172,10 @@ public class MongoConnection extends Connection
                 while ( iter.hasNext() )
                 {
                     DBObject bson = (DBObject)iter.next();
-                    Object obj = bson.get( field );
-                    array[i++] = obj.toString();
+                    JSONObject jobj = new JSONObject();
+                    for ( int j=0;j<fields.length;j++ )
+                        jobj.put(fields[j],bson.get(fields[j]));
+                    array[i++] = jobj.toJSONString();
                 }
                 return array;
             }
