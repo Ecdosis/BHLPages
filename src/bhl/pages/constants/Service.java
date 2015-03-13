@@ -25,7 +25,7 @@ package bhl.pages.constants;
  */
 public class Service 
 {
-    /** high-level tilt service name */
+    /** high-level bhlpages service names */
     public static final String PAGES = "pages";
     public static final String DOCUMENTS = "documents";
     public static final String TEXT = "text";
