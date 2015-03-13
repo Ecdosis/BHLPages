@@ -42,7 +42,7 @@ getjarpaths()
 do_start() {
   JARPATHS=`getjarpaths /usr/local/bin/bhlpages/lib`
   pkill -f BHLPages.jar
-  java -Djava.library.path=$LIBPATH -cp .$JARPATHS:/usr/local/bin/bhlpages/BHLPages.jar bhl.pages.JettyServer -w 8084 2>/dev/null &
+  java -Djava.library.path=$LIBPATH -cp .$JARPATHS:/usr/local/bin/bhlpages/BHLPages.jar bhl.pages.JettyServer -w 8084 >> /var/log/bhlpages.log 2>&1 &
 }
 # Stop the service bhlpages
 do_stop() {
