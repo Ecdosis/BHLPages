@@ -124,7 +124,7 @@ public class JettyServer extends AbstractHandler
         return sane;
     }
     /**
-     * Launch the AeseServer
+     * Launch the BHLPages service
      * @throws Exception 
      */
     private static void launchServer() throws Exception
@@ -137,7 +137,7 @@ public class JettyServer extends AbstractHandler
      */
     private static void usage()
     {
-        System.out.println( "java -jar tilt2.jar [-h host] [-d db-port] " );
+        System.out.println( "sudo service bhlpages" );
     }
     /**
      * @param args the command line arguments
