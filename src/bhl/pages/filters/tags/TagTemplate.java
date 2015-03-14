@@ -17,14 +17,26 @@
  *  http://www.biodiversitylibrary.org/
  */
 
-package bhl.pages.filters;
-import calliope.AeseSpeller;
+package bhl.pages.filters.tags;
+
 /**
- * Interface for block-level elements
+ * Template for an abstract tag, to be recalled when a specific tag is seen
  * @author desmond
  */
-public interface Block {
-    abstract boolean addLine( String line );
-    abstract void markHyphen( boolean hard );
-    String toText( AeseSpeller speller );
+public class TagTemplate {
+    public String name;
+    public String className;
+    public String core;
+    /**
+     * Create a template
+     * @param name the HTML tag-name, e.g. "span"
+     * @param className the value of the class attribute or null
+     * @param core the default core text (used for single tags)
+     */
+    public TagTemplate( String name, String className, String core )
+    {
+        this.name = name;
+        this.className = className;
+        this.core = core;
+    }
 }

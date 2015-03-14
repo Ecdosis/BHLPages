@@ -21,9 +21,9 @@
 package bhl.pages.filters;
 
 import java.util.HashSet;
-
+import calliope.AeseSpeller;
 /**
- * Represent a block location
+ * Represent a block of text that is a location
  * @author desmond
  */
 public class Location implements Block 
@@ -33,6 +33,7 @@ public class Location implements Block
     static
     {
         Location.locations = new HashSet<String>();
+        // just add any words here that can occur in locations
         Location.locations.add("concord");
         Location.locations.add("massachusetts");
         Location.locations.add("umbagog");
@@ -51,7 +52,8 @@ public class Location implements Block
      */
     static boolean isLocation( String text )
     {
-        String[] words = text.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
+        String[] words = text.replaceAll("[^a-zA-Z ]", 
+            "").toLowerCase().split("\\s+");
         for ( int i=0;i<words.length;i++ )
             if ( !locations.contains(words[i]) )
                 return false;
@@ -80,7 +82,8 @@ public class Location implements Block
     public void markHyphen( boolean hard )
     {
     }
-    public String toString()
+    @Override
+    public String toText( AeseSpeller speller )
     {
         return "<div class=\"location\">"+location+"</div>";
     }

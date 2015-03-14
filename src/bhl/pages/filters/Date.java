@@ -19,7 +19,7 @@
 
 package bhl.pages.filters;
 import java.util.HashSet;
-
+import calliope.AeseSpeller;
 /**
  * A Date entry in the Brew journal
  * @author desmond
@@ -188,7 +188,8 @@ public class Date implements Block {
         }
         return true;
     }
-    public String toString()
+    @Override
+    public String toText( AeseSpeller speller )
     {
         StringBuilder sb =new StringBuilder();
         sb.append("<div class=\"date\">");

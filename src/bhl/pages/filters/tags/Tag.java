@@ -17,14 +17,30 @@
  *  http://www.biodiversitylibrary.org/
  */
 
-package bhl.pages.filters;
-import calliope.AeseSpeller;
+package bhl.pages.filters.tags;
+
 /**
- * Interface for block-level elements
+ *  Basic abstract tag
  * @author desmond
  */
-public interface Block {
-    abstract boolean addLine( String line );
-    abstract void markHyphen( boolean hard );
-    String toText( AeseSpeller speller );
+public abstract class Tag 
+{
+    public int start;
+    public int end;
+    String name;
+    /** the core word(s) to be preserved */
+    String core;
+    public Tag( String name, int start )
+    {
+        this.name = name;
+        this.start = start;
+    }
+    public void setEnd( int end )
+    {
+        this.end = end;
+    }
+    public void setCore( String core )
+    {
+        this.core = core;
+    }
 }

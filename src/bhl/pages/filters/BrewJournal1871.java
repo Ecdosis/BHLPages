@@ -202,7 +202,7 @@ public class BrewJournal1871 implements Filter
         StringBuilder sb = new StringBuilder();
         for ( int i=0;i<blocks.size();i++ )
         {
-            sb.append(blocks.get(i));
+            sb.append(blocks.get(i).toText(this.speller));
             if ( i <blocks.size()-1 )
                 sb.append("\n");
         }

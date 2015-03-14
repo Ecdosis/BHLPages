@@ -17,14 +17,29 @@
  *  http://www.biodiversitylibrary.org/
  */
 
-package bhl.pages.filters;
-import calliope.AeseSpeller;
+package bhl.pages.filters.tags;
+
 /**
- * Interface for block-level elements
+ * Simple single tag that resolves to plain text
  * @author desmond
  */
-public interface Block {
-    abstract boolean addLine( String line );
-    abstract void markHyphen( boolean hard );
-    String toText( AeseSpeller speller );
+public class SingleTag extends Tag
+{
+    /**
+     * Create a single tag like [male]
+     * @param name the HTML name of the tag (required by Tag, can be null)
+     * @param start the start offset in the raw text
+     */
+    public SingleTag( String name, int start )
+    {
+        super(name,start);
+    }
+    /**
+     * Convert to HTML 
+     * @return an entity or plain text
+     */
+    public String toString()
+    {
+        return core;
+    }
 }
