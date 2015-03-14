@@ -1,5 +1,5 @@
 f41bc04f2d353bdb74fbb297bed6aa4f  etc/init.d/bhlpages
-539eb148e5a454696e9a1db8c92d24d9  usr/local/bin/bhlpages/BHLPages.jar
+e96aacf5e2147e80b1dd57caa9098e6a  usr/local/bin/bhlpages/BHLPages.jar
 ed9cdb7a21bd0ba982a0f341520f3183  usr/local/bin/bhlpages/lib/jetty-util-8.1.15.v20140411.jar
 a2d0df2ebc8c428c62a152682f4c42ad  usr/local/bin/bhlpages/lib/jetty-http-8.1.15.v20140411.jar
 f1535657ebe122f89bad3f75a2dcedad  usr/local/bin/bhlpages/lib/json-simple-1.1.1.jar
