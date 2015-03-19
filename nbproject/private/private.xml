@@ -3,28 +3,44 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/exception/MissingDocumentException.java</file>
-            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/handler/HTMLSelector.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/filters/tags/Tag.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/filters/tags/SingleTag.java</file>
             <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/JettyServerThread.java</file>
-            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/handler/PagesGetHandler.java</file>
-            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/constants/Database.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/filters/Paragraph.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/filters/Date.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/calliope/AeseSpeller.java</file>
             <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/exception/HTMLException.java</file>
-            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/constants/Service.java</file>
-            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/handler/PagesImageHandler.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/filters/Filter.java</file>
             <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/exception/PagesException.java</file>
             <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/constants/Params.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/handler/PagesImageHandler.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/filters/tags/TagTemplate.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/database/Connection.java</file>
             <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/handler/PageRange.java</file>
             <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/constants/JSONKeys.java</file>
             <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/handler/PagesHtmlHandler.java</file>
             <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/JettyServer.java</file>
-            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/Utils.java</file>
             <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/PagesWebApp.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/filters/Location.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/handler/PagesListHandler.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/filters/Block.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/filters/tags/PairedTag.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/handler/PagesTextHandler.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/database/Repository.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/exception/MissingDocumentException.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/database/MongoConnection.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/exception/DbException.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/handler/PagesGetHandler.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/constants/Database.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/constants/Service.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/Utils.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/filters/BrewJournal1871.java</file>
             <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/constants/Formats.java</file>
             <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/handler/PagesDocumentsHandler.java</file>
-            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/handler/PagesListHandler.java</file>
-            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/exception/NativeException.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/handler/PageDesc.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/exception/PagesExceptionMessage.java</file>
+            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/database/Connector.java</file>
             <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/handler/KeyPair.java</file>
-            <file>file:/home/desmond/NetBeansProjects/BHLPages/src/bhl/pages/handler/PagesTextHandler.java</file>
         </group>
     </open-files>
 </project-private>
