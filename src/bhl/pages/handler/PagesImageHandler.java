@@ -30,7 +30,6 @@ import bhl.pages.exception.PagesException;
  * @author desmond
  */
 public class PagesImageHandler extends PagesGetHandler {
-    static String IMAGE_SERVICE ="http://www.biodiversitylibrary.org/pageimage/";
     public void handle( HttpServletRequest request, 
         HttpServletResponse response, String urn ) throws PagesException
     {
@@ -40,9 +39,9 @@ public class PagesImageHandler extends PagesGetHandler {
             String pageid = request.getParameter(Params.PAGEID);
             if ( docid != null && pageid!= null )
             {
-                // yes the caller can do this him/herself
-                // but not in an application-independent manner
-                String path = IMAGE_SERVICE+pageid;
+                String path = PagesUriTemplateHandler.getUriTemplate();
+                if ( pageid != null )
+                    path = path.replace( "{pageid}", pageid );
                 response.setContentType("text/plain;charset=UTF-8");
                 response.getWriter().println(path);
             }

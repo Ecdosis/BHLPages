@@ -20,11 +20,8 @@
 
 package bhl.pages.handler;
 
-import bhl.pages.constants.Database;
-import bhl.pages.constants.JSONKeys;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bhl.pages.constants.Params;
 import bhl.pages.exception.MissingDocumentException;
 import java.io.IOException;
 
@@ -42,13 +39,17 @@ public class PagesUriTemplateHandler extends PagesGetHandler
         try
         {
             response.setContentType("text/plain");
-            response.getWriter().print(
-                "http://biodiversitylibrary.org/pageimage/{pageid}" );
+            // pretty simple in this case
+            response.getWriter().print( getUriTemplate() );
         }
         catch ( IOException ioe )
         {
             throw new MissingDocumentException(ioe);
         }
     }
-            
+    public static String getUriTemplate()
+    {
+        return "http://biodiversitylibrary.org/pageimage/{pageid}";
+    }       
 }
+
