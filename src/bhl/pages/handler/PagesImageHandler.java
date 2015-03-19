@@ -35,9 +35,8 @@ public class PagesImageHandler extends PagesGetHandler {
     {
         try
         {
-            String docid = request.getParameter(Params.DOCID);
             String pageid = request.getParameter(Params.PAGEID);
-            if ( docid != null && pageid!= null )
+            if ( pageid!= null )
             {
                 String path = PagesUriTemplateHandler.getUriTemplate();
                 if ( pageid != null )
