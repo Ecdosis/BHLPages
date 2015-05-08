@@ -27,4 +27,5 @@ public class Params {
     public final static String DOCID = "docid";
     public final static String PAGEID ="pageid";
     public final static String TITLE = "title";
+    public final static String URI_TEMPLATE = "uri_template";
 }

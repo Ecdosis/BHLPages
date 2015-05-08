@@ -23,6 +23,7 @@ package bhl.pages.handler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bhl.pages.exception.MissingDocumentException;
+import bhl.pages.PagesWebApp;
 import java.io.IOException;
 
 
@@ -49,7 +50,7 @@ public class PagesUriTemplateHandler extends PagesGetHandler
     }
     public static String getUriTemplate()
     {
-        return "http://biodiversitylibrary.org/pageimage/{pageid}";
+        return PagesWebApp.uri_template;
     }       
 }
 

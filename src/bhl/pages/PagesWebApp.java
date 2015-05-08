@@ -22,13 +22,14 @@ package bhl.pages;
 
 import bhl.pages.database.Connector;
 import bhl.pages.database.Repository;
+import bhl.pages.constants.Params;
 import bhl.pages.exception.PagesExceptionMessage;
-import bhl.pages.exception.PagesException;
 import java.util.Enumeration;
 import bhl.pages.handler.*;
 import bhl.pages.exception.PagesException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.ServletConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -44,7 +45,21 @@ public class PagesWebApp extends HttpServlet
     public static int dbPort = 27017;
     public static int wsPort = 8080;
     public static String webRoot = "/var/www";
+    public static String uri_template 
+        = "http://biodiversitylibrary.org/pageimage/{pageid}";
     Repository repository = Repository.MONGO;
+    /**
+     * Read the uri template if present. Add any other params here.
+     * @param config the servlet config object
+     * @throws ServletException 
+     */
+    public void init(ServletConfig config) throws ServletException 
+    {
+        super.init(config);
+        String template = config.getInitParameter(Params.URI_TEMPLATE);
+        if ( template != null && template.length()>0 )
+            uri_template = template;
+    }
     /**
      * Safely convert a string to a Repository enum
      * @param value the value probably a repo type

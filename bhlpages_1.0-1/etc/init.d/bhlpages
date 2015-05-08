@@ -16,7 +16,7 @@
 ### END INIT INFO
 
 # Exit if the package is not installed
-
+#-e not -x because jars don't have to be executable
 [ -e "/usr/local/bin/bhlpages/BHLPages.jar" ] || exit 5
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Biodiversity Heritage Library page description service for TILT"
