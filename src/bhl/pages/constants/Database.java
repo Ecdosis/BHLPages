@@ -27,4 +27,5 @@ package bhl.pages.constants;
 public class Database {
     public static String PAGES = "pages";
     public static String DOCUMENTS = "documents";
+    public static String OPTIONS = "options";
 }

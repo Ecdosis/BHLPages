@@ -39,4 +39,6 @@ public class JSONKeys {
     public static final String CONTENT= "content";
     public static final String _ID = "_id";
     public static final String CROP_RECT = "crop_rect";
+    public static final String DOCID = "docid";
+    public static final String TITLE = "title";
 }

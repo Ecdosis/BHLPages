@@ -20,12 +20,14 @@
 
 package bhl.pages.handler;
 
+import bhl.pages.PagesWebApp;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bhl.pages.constants.Params;
 import bhl.pages.exception.MissingDocumentException;
 import bhl.pages.exception.PagesException;
 import bhl.pages.filters.BrewJournal1871;
+import bhl.pages.filters.DefaultHtmlFilter;
 import bhl.pages.database.*;
 
 /**
@@ -33,6 +35,31 @@ import bhl.pages.database.*;
  * @author desmond
  */
 public class PagesHtmlHandler extends PagesGetHandler {
+    static int TEXT = 1;
+    static int HTML = 2;
+    
+    /**
+    * Guess the format of some text (plain text or HTML)
+    * @param text the text to test
+    * @return TextIndex.HTML if 1st non-space is &lt; else TextIndex.TEXT
+    */
+    private int guessFormat( String text )
+    {
+       int format = TEXT;
+       for ( int i=0;i<text.length();i++ )
+       {
+           char token = text.charAt(i);
+           if ( !Character.isWhitespace(token) )
+           {
+               if ( token=='<' )
+                   format = HTML;
+               else
+                   format = TEXT;
+               break;
+           }
+       }
+       return format;
+    }
     public void handle( HttpServletRequest request, 
         HttpServletResponse response, String urn ) throws PagesException
     {
@@ -42,10 +69,13 @@ public class PagesHtmlHandler extends PagesGetHandler {
             String docid = request.getParameter(Params.DOCID);
             String pageid = request.getParameter(Params.PAGEID);
             String content = conn.getPageContent( docid, pageid );
-            // obviously we need to choose a filter here based on the ocid
-            // perhaps via a HashMap 
-            // which could be loaded from an external resource or hard-coded
-            String html = new BrewJournal1871().filter( content );
+            String html;
+            if ( guessFormat(content)==HTML )
+                html = content;
+            else if ( PagesWebApp.filters.containsKey(docid) )
+                html = new BrewJournal1871().filter( content );
+            else 
+                html = new DefaultHtmlFilter().filter( content );
             response.setContentType("text/html;charset=UTF-8");
             response.getWriter().println(html);
         }

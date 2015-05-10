@@ -32,6 +32,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 
 /**
  *
@@ -48,6 +49,12 @@ public class PagesWebApp extends HttpServlet
     public static String uri_template 
         = "http://localhost/images/{pageid}";
     Repository repository = Repository.MONGO;
+    public static HashMap<String,String> filters;
+    static
+    {
+        filters = new HashMap<>();
+        filters.put("Journals187119100Brew", "BrewJournal1871");
+    }
     /**
      * Read the uri template if present. Add any other params here.
      * @param config the servlet config object

@@ -24,8 +24,10 @@ import bhl.pages.constants.JSONKeys;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bhl.pages.exception.PagesException;
+import bhl.pages.exception.DbException;
 import bhl.pages.database.Connection;
 import bhl.pages.database.Connector;
+import org.json.simple.*;
 
 /**
  * Get a list of documents with titles from the database
@@ -75,6 +77,32 @@ public class PagesDocumentsHandler extends PagesGetHandler
         total.append(yearName);
         return total.toString();
     }
+    /**
+     * Get a pukka title from the options collection
+     * @param docid the docid to get the title from
+     * @return the pukka title or null
+     */
+    String getPukkaTitle( Connection conn, String docid ) 
+    {
+        try
+        {
+            String jstr = conn.getFromDbByField(Database.OPTIONS, docid, 
+                JSONKeys.DOCID);
+            JSONObject jobj = (JSONObject)JSONValue.parse( jstr);
+            return (String)jobj.get(JSONKeys.TITLE);
+        }
+        catch ( DbException dbe )
+        {
+            return null;
+        }
+    }
+    /**
+     * Handle the request for a list of documents in the database
+     * @param request the http request
+     * @param response the response we will write
+     * @param urn the remaining urn of the request
+     * @throws PagesException 
+     */
     public void handle( HttpServletRequest request, 
         HttpServletResponse response, String urn ) throws PagesException
     {
@@ -91,7 +119,10 @@ public class PagesDocumentsHandler extends PagesGetHandler
                 sb.append("\"");
                 sb.append(keys[i]);
                 sb.append("\", \"title\": \"");
-                sb.append(concoctTitle(keys[i]));
+                String title = getPukkaTitle(conn,keys[i]);
+                if ( title == null )
+                    title = concoctTitle(keys[i]);
+                sb.append(title);
                 sb.append("\" }");
                 if ( i<keys.length-1 )
                     sb.append(",");
