@@ -78,4 +78,6 @@ public abstract class Connection
         throws DbException;
     public abstract String[] listCollectionBySubKey( String collection, 
         String subKey, String subValue, String[] fields  ) throws DbException;
+    public abstract String getFromDbByField( String collName, String value, 
+        String field ) throws DbException;
 }

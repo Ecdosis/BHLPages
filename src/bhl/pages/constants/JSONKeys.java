@@ -37,4 +37,6 @@ public class JSONKeys {
     public static final String IA_IDENTIFIER = "ia_identifier";
     public static final String PAGE_SEQUENCE= "page_sequence";
     public static final String CONTENT= "content";
+    public static final String _ID = "_id";
+    public static final String CROP_RECT = "crop_rect";
 }

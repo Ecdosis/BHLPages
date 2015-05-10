@@ -30,6 +30,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.DBCursor;
 import java.util.List;
+import org.bson.types.ObjectId;
 import org.json.simple.JSONObject;
 
 
@@ -267,5 +268,38 @@ public class MongoConnection extends Connection
             throw new DbException(e);
         }
     }
-    
+    /**
+     * Fetch a resource from the server via a given field value
+     * @param collName the collection or database name
+     * @param value the value of the field
+     * @param field the field name
+     * @return the response as a string or null if not found
+     */
+    @Override
+    public String getFromDbByField( String collName, String value, String field ) 
+        throws DbException
+    {
+        try
+        {
+            connect();
+            DBCollection coll = getCollectionFromName( collName );
+            DBObject  query;
+            if ( field.equals(JSONKeys._ID) )
+            {
+                ObjectId objId = new ObjectId(value);
+                query = new BasicDBObject( field, objId );
+            }
+            else
+                query = new BasicDBObject(field,value);
+            DBObject obj = coll.findOne( query );
+            if ( obj != null )
+                return obj.toString();
+            else
+                return null;
+        }
+        catch ( Exception e )
+        {
+            throw new DbException( e );
+        }
+    }
 }
