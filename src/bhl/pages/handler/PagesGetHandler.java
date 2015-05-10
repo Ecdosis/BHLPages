@@ -115,7 +115,7 @@ public class PagesGetHandler {
             else if (service.equals(Service.CROP_RECT) )
                 new PagesCropRectHandler().handle(request,response,Utils.pop(urn));
             else
-                    throw new Exception("Unknown service "+service);
+                throw new Exception("Unknown service "+service);
         } catch (Exception e) {
             throw new PagesException(e);
         }

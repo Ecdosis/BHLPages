@@ -74,8 +74,9 @@ public class PagesCropRectHandler {
         {
             Connection conn = Connector.getConnection();
             String pageid = request.getParameter(Params.PAGEID);
-            String content = conn.getFromDbByField( Database.PAGES, 
-                JSONKeys.BHL_PAGE_ID, pageid );
+            Integer num = new Integer(pageid);
+            String content = conn.getFromDbByIntField( Database.PAGES, 
+                num.intValue(), JSONKeys.BHL_PAGE_ID );
             JSONObject jobj = (JSONObject)JSONValue.parse( content );
             JSONArray cropRect = (JSONArray) jobj.get(JSONKeys.CROP_RECT);
             if ( cropRect == null )
