@@ -206,6 +206,8 @@ public class BrewJournal1871 implements Filter
             if ( i <blocks.size()-1 )
                 sb.append("\n");
         }
+        this.speller.cleanup();
+        this.speller = null;
         return sb.toString();
     }
 }

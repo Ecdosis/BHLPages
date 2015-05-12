@@ -76,6 +76,8 @@ public class PagesHtmlHandler extends PagesGetHandler {
                 html = new BrewJournal1871().filter( content );
             else 
                 html = new DefaultHtmlFilter().filter( content );
+            // TextIndex does this before calculating offsets
+            html = html.replaceAll("\n","");
             response.setContentType("text/html;charset=UTF-8");
             response.getWriter().println(html);
         }

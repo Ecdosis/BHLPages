@@ -41,7 +41,7 @@ public class PagesCropRectHandler {
         JSONArray outer = new JSONArray();
         JSONArray tl = new JSONArray();
         tl.add(0.0);
-        tl.add(100.0);
+        tl.add(0.0);
         outer.add(tl);
         JSONArray tr = new JSONArray();
         tr.add(100.0);
