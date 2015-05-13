@@ -47,7 +47,7 @@ public class PagesWebApp extends HttpServlet
     public static int wsPort = 8080;
     public static String webRoot = "/var/www";
     public static String uri_template 
-        = "http://localhost/images/{pageid}";
+        = "http://charles-harpur.org/images/{pageid}";
     Repository repository = Repository.MONGO;
     public static HashMap<String,String> filters;
     static

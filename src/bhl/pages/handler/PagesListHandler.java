@@ -58,9 +58,12 @@ public class PagesListHandler extends PagesGetHandler
                 for ( int i=0;i<pages.length;i++ )
                 {
                     JSONObject jobj = (JSONObject)JSONValue.parse(pages[i]);
+                    Number pageNo = (Number)jobj.get(JSONKeys.PAGE_SEQUENCE);
+                    Number pageId = (Number)jobj.get(JSONKeys.BHL_PAGE_ID);
+                    System.out.println("pageNo="+pageNo+" pageId="+pageId);
                     PageDesc ps = new PageDesc(
-                        jobj.get(JSONKeys.PAGE_SEQUENCE).toString(),
-                        jobj.get(JSONKeys.BHL_PAGE_ID).toString());
+                        new Integer(pageNo.intValue()).toString(),
+                        new Integer(pageId.intValue()).toString());
                     list.add( ps.toJSONObject() );
                 }
                 PagesGetHandler.sortList( list );

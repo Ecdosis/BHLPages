@@ -38,6 +38,7 @@ public class BrewJournal1871 implements Filter
         blocks = new ArrayList<Block>();
         try
         {
+            System.out.println("Initialising aspell");
             this.speller = new AeseSpeller( "en_US" );
             this.compounds = new HashSet<String>();
         }
@@ -52,7 +53,10 @@ public class BrewJournal1871 implements Filter
     protected void finalize()
     {
         if ( this.speller != null )
+        {
+            System.out.println("Cleaning up aspell");
             this.speller.cleanup();
+        }
     }
     private Block transition( Block current, String className, String line, boolean change )
     {
@@ -173,6 +177,7 @@ public class BrewJournal1871 implements Filter
     @Override
     public String filter( String text )
     {
+        System.out.println("Starting brewster filter");
         String[] lines = text.split("\n");
         Block current = null;
         String firstWord = null;
@@ -206,7 +211,9 @@ public class BrewJournal1871 implements Filter
             if ( i <blocks.size()-1 )
                 sb.append("\n");
         }
+        System.out.println("Cleaning up aspell");
         this.speller.cleanup();
+        System.out.println("Cleanup finished");
         this.speller = null;
         return sb.toString();
     }

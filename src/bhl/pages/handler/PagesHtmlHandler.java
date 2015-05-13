@@ -77,7 +77,7 @@ public class PagesHtmlHandler extends PagesGetHandler {
             else 
                 html = new DefaultHtmlFilter().filter( content );
             // TextIndex does this before calculating offsets
-            html = html.replaceAll("\n","");
+            //html = html.replaceAll("\n"," ");
             response.setContentType("text/html;charset=UTF-8");
             response.getWriter().println(html);
         }
