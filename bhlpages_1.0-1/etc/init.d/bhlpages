@@ -40,9 +40,12 @@ do_start() {
   JARPATHS=`getjarpaths /usr/local/bin/bhlpages/lib`
   pkill -f $DAEMON
   java -Djava.library.path=$LIBPATH -cp .$JARPATHS:/usr/local/bin/bhlpages/BHLPages.jar bhl.pages.JettyServer -w 8084 >> /var/log/bhlpages.log 2>&1 &
+  PID=$!
+  echo $PID > /var/run/bhlpages.pid
 }
 do_stop() {
   pkill -f $DAEMON
+  rm -f /var/run/bhlpages.pid
 }
 ### main logic ###
 case "$1" in
